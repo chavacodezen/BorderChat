@@ -23,7 +23,7 @@ VirtualDOM: Is a Javascript version of the DOM.
 2. Decide the State and where it lives.
 3. What changes when State changes.
 
-Needed installation for this repository (on console):
+# Needed installation for this repository (on console):
   npm install -g expo-cli
   expo install react-native-safe-area-context
   expo install expo-splash-screen
