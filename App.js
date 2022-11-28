@@ -1,11 +1,16 @@
 import { useCallback, useEffect, useState } from "react";
-import { Button, StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import { StatusBar } from "expo-status-bar";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 import * as SplashScreen from "expo-splash-screen";
 import * as Font from "expo-font";
+import "react-native-gesture-handler";
+
+import ChatListScreen from "./screens/ChatListScreen";
 
 SplashScreen.preventAutoHideAsync();
+const Stack = createStackNavigator();
 
 export default function App() {
   const [appIsLoaded, setAppIsLoaded] = useState(false);
@@ -48,11 +53,11 @@ export default function App() {
 
   return (
     <SafeAreaProvider style={styles.container} onLayout={onLayout}>
-      <SafeAreaView>
-        <Text style={styles.label}>Welcome to the BorderChat app!</Text>
-        <StatusBar style="auto" />
-        <Button title="Start chatting" />
-      </SafeAreaView>
+        <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Home" component={ChatListScreen} />
+        </Stack.Navigator>
+        </NavigationContainer>
     </SafeAreaProvider>
   );
 }
@@ -61,8 +66,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    justifyContent: "center",
-    alignItems: "center",
   },
   label: {
     color: "black",
