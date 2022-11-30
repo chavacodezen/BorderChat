@@ -33,3 +33,7 @@ expo install @react-navigation/stack
 expo install react-native-gesture-handler
 expo install @react-navigation/bottom-tabs
 expo install @expo/vector-icons
+
+Commit structure:
+Add/Update/Delete File/Feature (Lesson/Personal)
+Example: Add chat screen (Lesson 39) - Update settings screen (Personal)
