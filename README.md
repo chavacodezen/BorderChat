@@ -5,6 +5,9 @@ CDEECS.
 # What is react?
 Is just a Javascript library that allow us to write mora Javascript to have interactivity on our websites.
 
+# React vs React Native
+React Native is a cross-platform mobile framework that uses React for building apps and websites.
+
 # Elements of a react library
 State: Is the data of our app.
 Component: Is the independent and reusable code.
