@@ -28,6 +28,7 @@ VirtualDOM: Is a Javascript version of the DOM.
 
 # Needed installation for this repository (on console):
 npm install -g expo-cli
+yarn install
 expo install react-native-safe-area-context
 expo install expo-splash-screen
 expo install @react-navigation/native
