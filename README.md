@@ -49,3 +49,14 @@ Example: Add chat screen (Lesson 39) - Update settings screen (Personal)
 4. Use the imperative mood in the subject line
 5. Wrap lines at 72 characters
 6. Use the body to explain what and why you have done something. In most cases, you can leave out details about how a change has been made.
+
+# Information in commit messages
+1. Describe why a change is being made.
+2. How does it address the issue?
+3. What effects does the patch have?
+4. Do not assume the reviewer understands what the original problem was.
+5. Do not assume the code is self-evident/self-documenting.
+6. Read the commit message to see if it hints at improved code structure.
+7. The first commit line is the most important.
+8. Describe any limitations of the current code.
+9. Do not include patch set-specific comments.
