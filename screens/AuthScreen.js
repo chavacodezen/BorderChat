@@ -1,21 +1,29 @@
-import React from "react";
-import { StyleSheet } from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { FontAwesome } from "@expo/vector-icons";
 
 import PageContainer from "../components/PageContainer";
-import Input from "../components/Input";
+import SignInForm from "../components/SignInForm";
+import SignUpForm from "../components/SignUpForm";
+import colors from "../constants/colors";
 
 const AuthScreen = (props) => {
+  const [isSignUp, setIsSignUp] = useState(false);
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <PageContainer style={styles.pageContainer}>
-        <Input
-          label="First Name"
-          icon="user-o"
-          iconSize={24}
-          iconPack={FontAwesome}
-        />
+        { 
+          isSignUp ?
+          <SignUpForm /> :
+          <SignInForm />
+        }
+
+        <TouchableOpacity 
+          onPress={() => setIsSignUp(prevState => !prevState)}
+          style={styles.linkContainer}>
+          <Text style={styles.link}>{ `${isSignUp ? "Already a member? Sign In" : "Not a member? Sign Up"}` }</Text>
+        </TouchableOpacity>
       </PageContainer>
     </SafeAreaView>
   );
@@ -25,8 +33,17 @@ const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
   },
-  pageContainer: {
+  pageContainer: {},
+  linkContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginVertical: 15,
   },
-})
+  link: {
+    color: colors.blue,
+    fontFamily: 'medium',
+    letterSpacing: 0.3,
+  },
+});
 
 export default AuthScreen;
