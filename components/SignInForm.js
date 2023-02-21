@@ -6,10 +6,38 @@ import Input from "../components/Input";
 import SubmitButton from "../components/SubmitButton";
 
 const SignInForm = (props) => {
+  const inputChangedHandler = (inputId, inputValue) => {
+    if (inputId === "firstName" || inputId === "lastName") {
+      console.log(validateString(inputId, inputValue));
+    } else if (inputId === "email") {
+      console.log(validateEmail(inputId, inputValue));
+    } else if (inputId === "password") {
+      console.log(validatePassword(inputId, inputValue));
+    }
+  };
+
   return (
     <>
-      <Input label="Email" icon="mail" iconSize={24} iconPack={Feather} />
-      <Input label="Password" icon="lock" iconSize={24} iconPack={Feather} />
+      <Input
+        id="email"
+        label="Email"
+        icon="mail"
+        autoCapitalize="none"
+        keyboardType="email-address"
+        iconSize={24}
+        iconPack={Feather}
+        onInputChanged={inputChangedHandler}
+      />
+      <Input
+        id="password"
+        label="Password"
+        icon="lock"
+        autoCapitalize="none"
+        secureTextEntry
+        iconSize={24}
+        iconPack={Feather}
+        onInputChanged={inputChangedHandler}
+      />
       <SubmitButton
         title="Sign In"
         style={styles.submitButton}
