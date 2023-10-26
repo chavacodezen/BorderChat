@@ -6,8 +6,36 @@ import Input from "../components/Input";
 import SubmitButton from "../components/SubmitButton";
 import { validateInput } from "../utils/actions/formActions";
 import { reducer } from "../utils/reducers/formReducer";
+import { signUp } from "../utils/actions/authActions";
+
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyApVL9flFE9Kwz_czMEjWFesAMXIHKqoIc",
+  authDomain: "borderchat-c454d.firebaseapp.com",
+  projectId: "borderchat-c454d",
+  storageBucket: "borderchat-c454d.appspot.com",
+  messagingSenderId: "139121179890",
+  appId: "1:139121179890:web:e919854b33a353681d246b",
+  measurementId: "G-0TSRRDDTX7"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+console.log(app);
 
 const initialState = {
+  inputValues: {
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+  },
   inputValidities: {
     firstName: false,
     lastName: false,
@@ -23,10 +51,19 @@ const SignUpForm = (props) => {
   const inputChangedHandler = useCallback(
     (inputId, inputValue) => {
       const result = validateInput(inputId, inputValue);
-      dispatchFormState({ inputId, validationResult: result });
+      dispatchFormState({ inputId, validationResult: result, inputValue });
     },
     [dispatchFormState]
   );
+
+  const authHandler = () => {
+    signUp(
+      formState.inputValues.firstName,
+      formState.inputValues.lastName,
+      formState.inputValues.email,
+      formState.inputValues.password,
+    )
+  };
 
   return (
     <>
@@ -73,7 +110,7 @@ const SignUpForm = (props) => {
       <SubmitButton
         title="Sign Up"
         style={styles.submitButton}
-        onPress={() => console.log("Button pressed")}
+        onPress={authHandler}
         disabled={!formState.formIsValid}
       />
     </>
