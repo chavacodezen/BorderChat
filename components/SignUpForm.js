@@ -1,5 +1,5 @@
-import React, { useCallback, useReducer } from "react";
-import { StyleSheet } from "react-native";
+import React, { useCallback, useEffect, useReducer, useState } from "react";
+import { ActivityIndicator, Alert, StyleSheet } from "react-native";
 import { FontAwesome, Feather } from "@expo/vector-icons";
 
 import Input from "../components/Input";
@@ -7,27 +7,8 @@ import SubmitButton from "../components/SubmitButton";
 import { validateInput } from "../utils/actions/formActions";
 import { reducer } from "../utils/reducers/formReducer";
 import { signUp } from "../utils/actions/authActions";
-
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyApVL9flFE9Kwz_czMEjWFesAMXIHKqoIc",
-  authDomain: "borderchat-c454d.firebaseapp.com",
-  projectId: "borderchat-c454d",
-  storageBucket: "borderchat-c454d.appspot.com",
-  messagingSenderId: "139121179890",
-  appId: "1:139121179890:web:e919854b33a353681d246b",
-  measurementId: "G-0TSRRDDTX7"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-console.log(app);
+import colors from "../constants/colors";
+import { useDispatch } from "react-redux";
 
 const initialState = {
   inputValues: {
@@ -46,6 +27,10 @@ const initialState = {
 };
 
 const SignUpForm = (props) => {
+  const dispatch = useDispatch();
+
+  const [error, setError] = useState();
+  const [isLoading, setIsLoading] = useState(false);
   const [formState, dispatchFormState] = useReducer(reducer, initialState);
 
   const inputChangedHandler = useCallback(
@@ -56,14 +41,29 @@ const SignUpForm = (props) => {
     [dispatchFormState]
   );
 
-  const authHandler = () => {
-    signUp(
-      formState.inputValues.firstName,
-      formState.inputValues.lastName,
-      formState.inputValues.email,
-      formState.inputValues.password,
-    )
-  };
+  useEffect(() => {
+    if(error) {
+      Alert.alert("An error occured", error);
+    }
+  }, [error]);
+
+  const authHandler = useCallback(async () => {
+    try {
+      setIsLoading(true);
+      const action = signUp(
+        formState.inputValues.firstName,
+        formState.inputValues.lastName,
+        formState.inputValues.email,
+        formState.inputValues.password
+      );
+      setError(null);
+      await dispatch(action);
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  }, [dispatch, formState]);
 
   return (
     <>
@@ -107,12 +107,20 @@ const SignUpForm = (props) => {
         onInputChanged={inputChangedHandler}
         errorText={formState.inputValidities["password"]}
       />
-      <SubmitButton
-        title="Sign Up"
-        style={styles.submitButton}
-        onPress={authHandler}
-        disabled={!formState.formIsValid}
-      />
+      {
+        isLoading ? 
+        <ActivityIndicator 
+          size={'small'} 
+          color={colors.primary} 
+          style={{ marginTop: 20 }}
+        /> :
+        <SubmitButton
+          title="Sign Up"
+          style={styles.submitButton}
+          onPress={authHandler}
+          disabled={!formState.formIsValid}
+        />
+      }
     </>
   );
 };

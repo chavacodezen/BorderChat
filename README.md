@@ -38,6 +38,8 @@ expo install react-native-gesture-handler
 expo install @react-navigation/bottom-tabs
 expo install @expo/vector-icons
 npm install firebase
+npm install @reduxjs/toolkit react-redux
+npm install @react-native-async-storage/async-storage
 
 # Commit structure:
 Add/Update/Delete File/Feature (Lesson/Personal)
