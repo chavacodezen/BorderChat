@@ -45,7 +45,6 @@ npm install @react-native-async-storage/async-storage
 Add/Update/Delete File/Feature (Lesson/Personal)
 Example: Add chat screen (Lesson 39) - Update settings screen (Personal)
 
-
 # Rules for a great git commit message style
 1. Separate subject from body with a blank line
 2. Do not end the subject line with a period
