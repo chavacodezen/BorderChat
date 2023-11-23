@@ -63,4 +63,3 @@ Example: Add chat screen (Lesson 39) - Update settings screen (Personal)
 7. The first commit line is the most important.
 8. Describe any limitations of the current code.
 9. Do not include patch set-specific comments.
-
