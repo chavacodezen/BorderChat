@@ -65,3 +65,15 @@ Example: Add chat screen (Lesson 39) - Update settings screen (Personal)
 8. Describe any limitations of the current code.
 9. Do not include patch set-specific comments.
 
+                                  |
+                                 |||
+                                |||||
+                  |    |    |   |||||||
+                 )_)  )_)  )_)   ~|~
+                )___))___))___)\  |
+               )____)____)_____)\\|
+             _____|____|____|_____\\\__
+             \                       /
+       ~^~^~~^~^~~^~^~~^~^~~^~^~~^~^~~^~^~~^~^~
+               ~^~  all aboard!  ~^~
+       ~^~^~~^~^~~^~^~~^~^~~^~^~~^~^~~^~^~~^~^~
