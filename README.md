@@ -2,7 +2,6 @@
 Open source project to practice with react native and to share experience with more devs.
 CDEECS.
 
-
 # What is React?
 Is just a Javascript library that allow us to write mora Javascript to have interactivity on our websites.
 
